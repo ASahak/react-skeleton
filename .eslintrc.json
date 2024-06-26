@@ -13,10 +13,8 @@
 		"node": true
 	},
 	"extends": [
-		"next",
 		"eslint:recommended",
 		"prettier",
-		"next/core-web-vitals",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:react/recommended",
 		"plugin:prettier/recommended",

@@ -1,4 +1,3 @@
-/*TODO need to import from npm package*/
 import { DIRECTION, SIZE_UNITS } from '@/common/enums';
 import { GridKeyType } from '@/common/types';
 
@@ -25,6 +24,17 @@ export const TREE_ELEMENTS_SPACING = {
 	MAX: 20,
 	MIN: 0,
 	DEFAULT: 10,
+};
+
+export const DEFAULT_COLOR_THEMES = {
+	dark: {
+		main: '#282c34',
+		gradient: '#2c303a',
+	},
+	light: {
+		main: '#f1f1f1',
+		gradient: '#ececec',
+	},
 };
 
 export const REPEAT_COUNT_RANGE = {

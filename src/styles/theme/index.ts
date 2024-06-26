@@ -1,7 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
 import styles from '@/styles/globalStyles';
 import foundations from './foundations';
-import * as components from './components';
 
 export const breakpoints = {
 	xs: '481px',
@@ -14,7 +13,6 @@ export const breakpoints = {
 
 const overrides = {
 	...foundations,
-	components: { ...components },
 	styles,
 	breakpoints,
 };

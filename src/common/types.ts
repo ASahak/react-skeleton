@@ -1,5 +1,21 @@
 import { ALIGN_ITEMS, DIRECTION, JUSTIFY_CONTENT } from '@/common/enums';
 
+export type ColorTheme = {
+	main: string;
+	gradient: string;
+};
+
+export type ColorThemes = {
+	dark: ColorTheme;
+	light: ColorTheme;
+};
+
+export type Breakpoints = {
+	mobile: string;
+	tablet: string;
+	desktop: string;
+};
+
 export type SkeletonKeyType =
 	| 'w'
 	| 'h'
