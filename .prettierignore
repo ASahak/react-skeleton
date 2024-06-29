@@ -2,7 +2,6 @@
 .cache
 package-lock.json
 public
+dist
 node_modules
-next-env.d.ts
-next.skeleton-generator.ts
 yarn.lock
