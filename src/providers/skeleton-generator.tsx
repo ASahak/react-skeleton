@@ -11,7 +11,7 @@ export const ReactSkeletonProvider = ({
 	colorTheme = DEFAULT_COLOR_THEMES,
 	breakpoints = DEFAULT_BREAKPOINTS,
 }: Readonly<{
-	isDark: boolean;
+	isDark?: boolean;
 	children: React.ReactNode;
 	breakpoints?: Breakpoints;
 	colorTheme?: ColorThemes;
