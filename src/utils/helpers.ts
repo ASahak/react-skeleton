@@ -549,7 +549,7 @@ const filterNonChangedValues = (data: IGrid & ISkeleton) => {
 export const parseStyleObject = (cssString: string) => {
 	const styles: string = cssString.replace(STYLE_PARSING_REGEXP, '');
 
-	return parse(styles);
+	return parse(styles) as Record<string, any>;
 };
 
 export const cssToReactStyle = (styles: Record<string, any>) => {

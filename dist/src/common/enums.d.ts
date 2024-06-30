@@ -2,6 +2,10 @@ export declare enum DIRECTION {
     ROW = "row",
     COLUMN = "column"
 }
+export declare enum COLOR_MODES {
+    LIGHT = "light",
+    DARK = "dark"
+}
 export declare enum MARGIN_SIDES {
     TOP = "top",
     RIGHT = "right",
