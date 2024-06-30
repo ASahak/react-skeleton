@@ -1,4 +1,11 @@
-import { ALIGN_ITEMS, DIRECTION, JUSTIFY_CONTENT } from '@/common/enums';
+import {
+	ALIGN_ITEMS,
+	COLOR_MODES,
+	DIRECTION,
+	JUSTIFY_CONTENT,
+} from '@/common/enums';
+
+export type KeysInObject<T extends object> = keyof T;
 
 export type ColorTheme = {
 	main: string;
@@ -6,8 +13,8 @@ export type ColorTheme = {
 };
 
 export type ColorThemes = {
-	dark: ColorTheme;
-	light: ColorTheme;
+	[COLOR_MODES.DARK]: ColorTheme;
+	[COLOR_MODES.LIGHT]: ColorTheme;
 };
 
 export type Breakpoints = {
@@ -61,8 +68,8 @@ export interface IGrid {
 	justifyContent?: JUSTIFY_CONTENT;
 	withOpacity?: boolean;
 	styles?: string;
-	children?: string[];
-	skeletons?: string[];
+	children?: IGrid[];
+	skeletons?: ISkeleton[];
 	isRepeated?: boolean;
 	responsive?: Responsive;
 }
@@ -77,4 +84,12 @@ export interface IGenerateCSSGridAreaArgs {
 	repeatCount: number;
 	reservedProps: Record<string, any>;
 	keyLevel: string;
+}
+
+export interface IGridLayout {
+	grid: IGrid;
+	dataKey: string;
+	index: number;
+	length: number;
+	reservedPropsFromParent?: Record<string, any>;
 }

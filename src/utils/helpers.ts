@@ -12,6 +12,7 @@ import {
 	DEFAULT_WIDTH,
 	ROOT_KEY,
 	SKELETON_INITIAL_VALUES,
+	STYLE_PARSING_REGEXP,
 } from '@/constants/general-settings';
 import {
 	Device,
@@ -19,9 +20,11 @@ import {
 	IGenerateCSSGridAreaArgs,
 	IGrid,
 	ISkeleton,
+	KeysInObject,
 	Responsive,
 	SkeletonKeyType,
 } from '@/common/types';
+import parse from 'style-to-object';
 
 export const responsiveInstance = (
 	instance:
@@ -208,29 +211,55 @@ export const generateGridAreaAsColDirection = (
 
 export const mutateWithRepeated = (
 	repeatCount: number,
-	key: string,
+	currentKey: string,
+	item: IGrid | ISkeleton,
 	index: number
 ) => {
-	return repeatCount > 0
+	return repeatCount > 0 && index > 0
 		? {
-				path: key,
-				...(index > 0
-					? {
-							isRepeated: true,
-							key: key + '_repeated_' + index,
-						}
-					: { key }),
+				isRepeated: true,
+				key: currentKey + '_repeated_' + index,
+				item,
 			}
-		: { path: key, key };
+		: { key: currentKey, item };
+};
+
+export const putInitialValuesIfNotExists = (
+	item: ISkeleton | IGrid,
+	isSkeleton?: boolean
+) => {
+	function mutate<T extends object, U>(initialValues: T) {
+		return Object.keys(initialValues).reduce(
+			(acc, key) => {
+				const typedKey = key as KeysInObject<T>;
+
+				if (!(typedKey in item)) {
+					(acc as any)[typedKey] = initialValues[typedKey];
+				}
+				return acc;
+			},
+			{ ...item } as U
+		);
+	}
+
+	if (isSkeleton) {
+		return mutate<typeof SKELETON_INITIAL_VALUES, ISkeleton>(
+			SKELETON_INITIAL_VALUES
+		);
+	} else {
+		return mutate<typeof CONTAINER_INITIAL_VALUES, IGrid>(
+			CONTAINER_INITIAL_VALUES
+		);
+	}
 };
 
 export const itemsWithRepeat = (
-	skeletons: (ISkeleton | IGrid | string)[],
+	items: (ISkeleton | IGrid)[],
 	repeatCount: number
 ) => {
-	return repeatCount > 0 && skeletons[0]
-		? [].constructor(repeatCount).fill(skeletons[0])
-		: skeletons;
+	return repeatCount > 0 && items[0]
+		? [].constructor(repeatCount).fill(items[0])
+		: items;
 };
 
 export const setOpacity = (
@@ -242,20 +271,6 @@ export const setOpacity = (
 	return (repeatCount || rowsLength) > 0 && withOpacity
 		? 1 - (1 / (repeatCount || rowsLength)) * viewIndex
 		: 1;
-};
-
-export const convertCssToReactStyles = (cssStyles: Record<string, any>) => {
-	const reactStyles: Record<string, any> = {};
-
-	for (const key in cssStyles) {
-		// Convert CSS property names to camelCase
-		const camelCaseKey: string = key.replace(/-([a-z])/g, (g) =>
-			g[1].toUpperCase()
-		);
-		reactStyles[camelCaseKey] = cssStyles[key];
-	}
-
-	return reactStyles;
 };
 
 export const generateCSSGridArea = ({
@@ -531,36 +546,21 @@ const filterNonChangedValues = (data: IGrid & ISkeleton) => {
 	);
 };
 
-export const getGridStructure = (
-	grid: IGrid | ISkeleton,
-	gridState: Record<string, IGrid>,
-	skeletonsState: Record<string, ISkeleton>,
-	adaptiveDeviceEnabled: boolean
-): Record<string, any> => {
-	return {
-		...filterNonChangedValues(grid),
-		...(adaptiveDeviceEnabled && {
-			responsive: filterResponsiveValues(grid.responsive!, grid),
-		}),
-		...(Object.hasOwn(grid, 'children') && {
-			children: (grid as IGrid).children!.map((child: string) =>
-				getGridStructure(
-					gridState[child],
-					gridState,
-					skeletonsState,
-					adaptiveDeviceEnabled
-				)
-			),
-		}),
-		...(Object.hasOwn(grid, 'skeletons') && {
-			skeletons: (grid as IGrid).skeletons!.map((child: string) =>
-				getGridStructure(
-					skeletonsState[child],
-					gridState,
-					skeletonsState,
-					adaptiveDeviceEnabled
-				)
-			),
-		}),
-	};
+export const parseStyleObject = (cssString: string) => {
+	const styles: string = cssString.replace(STYLE_PARSING_REGEXP, '');
+
+	return parse(styles);
+};
+
+export const cssToReactStyle = (styles: Record<string, any>) => {
+	const styleObject: Record<string, any> = {};
+
+	Object.keys(styles).forEach((styleProp) => {
+		const camelCaseProperty = styleProp.replace(/-([a-z])/g, (match, letter) =>
+			letter.toUpperCase()
+		);
+		styleObject[camelCaseProperty] = styles[styleProp];
+	});
+
+	return styleObject;
 };

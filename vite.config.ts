@@ -11,7 +11,7 @@ export default defineConfig({
 	},
 	build: {
 		emptyOutDir: true,
-		sourcemap: true,
+		sourcemap: false,
 		lib: {
 			entry: path.resolve(__dirname, 'index.ts'),
 			name: 'react-skeleton-builder',

@@ -3,6 +3,10 @@ export enum DIRECTION {
 	COLUMN = 'column',
 }
 
+export enum COLOR_MODES {
+	LIGHT = 'light',
+	DARK = 'dark',
+}
 export enum MARGIN_SIDES {
 	TOP = 'top',
 	RIGHT = 'right',

@@ -31,6 +31,11 @@ export declare const DEFAULT_COLOR_THEMES: {
         gradient: string;
     };
 };
+export declare const DEFAULT_BREAKPOINTS: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+};
 export declare const REPEAT_COUNT_RANGE: {
     MAX: number;
     MIN: number;

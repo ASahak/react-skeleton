@@ -1,5 +1,7 @@
 import { DIRECTION, SIZE_UNITS } from '@/common/enums';
 import { GridKeyType } from '@/common/types';
+import { filterFromPx } from '@/utils/helpers';
+import { breakpoints } from '@/styles/theme/index';
 
 export const STYLE_PARSING_REGEXP = /(^\{|\}$)/g;
 
@@ -35,6 +37,12 @@ export const DEFAULT_COLOR_THEMES = {
 		main: '#f1f1f1',
 		gradient: '#ececec',
 	},
+};
+
+export const DEFAULT_BREAKPOINTS = {
+	mobile: `${filterFromPx(breakpoints.sm) - 1}px`,
+	tablet: `${filterFromPx(breakpoints.lg) - 1}px`,
+	desktop: breakpoints.lg,
 };
 
 export const REPEAT_COUNT_RANGE = {

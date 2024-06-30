@@ -1,6 +1,6 @@
 {
 	"name": "react-skeleton-builder",
-	"version": "0.1.9",
+	"version": "0.2.1",
 	"private": false,
 	"type": "module",
 	"main": "dist/index.umd.js",
@@ -13,7 +13,7 @@
 		"start": "vite preview",
 		"lint": "next lint",
 		"pre-commit": "lint-staged",
-		"pre-push": "npm run build",
+		"pre-push": "npm run build && npm publish",
 		"prepare": "husky",
 		"lint:fix": "eslint ./src --fix --quiet",
 		"prettier:fix": "prettier --write ./**/*.{js,jsx,ts,tsx,css,json} --config ./.prettierrc"
