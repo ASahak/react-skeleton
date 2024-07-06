@@ -39,17 +39,21 @@ export const responsiveInstance = (
 
 export const getAdaptiveData = (
 	grid: Partial<Record<GridKeyType, any>>,
-	device: Device | null
+	device: Device | null,
+	isSkeleton?: boolean
 ) => {
-	return device !== 'desktop' && device
+	return device !== 'desktop' && device && Object.hasOwn(grid, 'responsive')
 		? {
-				...grid.responsive[device],
+				...putInitialValuesIfNotExists(
+					grid.responsive[device] ?? {},
+					isSkeleton
+				),
 				...(Object.hasOwn(grid, 'children') && { children: grid.children }),
 				...(Object.hasOwn(grid, 'skeletons') && {
 					skeletons: grid.skeletons,
 				}),
 			}
-		: grid;
+		: putInitialValuesIfNotExists(grid, isSkeleton);
 };
 
 export const generateDefaultValues = () => {
@@ -221,7 +225,7 @@ export const mutateWithRepeated = (
 				key: currentKey + '_repeated_' + index,
 				item,
 			}
-		: { key: currentKey, item };
+		: { key: currentKey + '_' + (index + 1), item };
 };
 
 export const putInitialValuesIfNotExists = (

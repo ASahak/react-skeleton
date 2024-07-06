@@ -1,5 +1,5 @@
-import { memo, useCallback } from 'react';
-import { Box } from '@chakra-ui/react';
+import { memo, useCallback, useMemo } from 'react';
+import { Box, keyframes } from '@chakra-ui/react';
 import {
 	ColorTheme,
 	IGrid,
@@ -12,39 +12,46 @@ import {
 	DEFAULT_SKELETON_GRADIENT_WIDTH,
 	DEFAULT_WIDTH,
 	ROOT_KEY,
+	SKELETON_ANIMATIONS,
 } from '@/constants/general-settings';
 import {
 	applicableValue,
 	cssToReactStyle,
 	generateCSSGridArea,
 	generateMargin,
+	getAdaptiveData,
 	itemsWithRepeat,
 	mutateWithRepeated,
 	parseStyleObject,
 	putInitialValuesIfNotExists,
 	setOpacity,
 } from '@/utils/helpers';
-import { COLOR_MODES, DIRECTION } from '@/common/enums';
-import { useGetSkeletonConfigProvider } from '@/hooks';
+import {
+	COLOR_MODES,
+	DIRECTION,
+	SKELETON_ANIMATION_VARIANTS,
+} from '@/common/enums';
+import { useCalcDevice, useGetSkeletonConfigProvider } from '@/hooks';
 
 export type IProps = {
 	grid: IGrid;
 	styles?: Record<string, any>;
 };
 export const Skeleton = memo(({ grid: gridState, styles }: IProps) => {
-	const { colorTheme, isDark } = useGetSkeletonConfigProvider();
-	// const { colorMode } = useColorMode();
-	// const device = useRecoilValue(selectDeviceState);
-	// const gridState = useRecoilValue(selectGridState);
-	// const skeletonsState = useRecoilValue(selectSkeletonsState);
-	// const rootStyles = useRecoilValue(selectRootStylesState);
-	// const colorTheme = useRecoilValue(
-	//   selectColorThemeState(colorMode as COLOR_MODE)
-	// );
-	// const isDark = colorMode === 'dark';
+	const { colorTheme, isDark, skeletonAnimation, breakpoints } =
+		useGetSkeletonConfigProvider();
+	const device = useCalcDevice(breakpoints);
+
 	const currentModeTheme: ColorTheme = isDark
 		? colorTheme[COLOR_MODES.DARK]
 		: colorTheme[COLOR_MODES.LIGHT];
+
+	const skeletonAnimationVariant = useMemo(
+		() => keyframes`
+    ${SKELETON_ANIMATIONS[skeletonAnimation as SKELETON_ANIMATION_VARIANTS]}
+    `,
+		[skeletonAnimation]
+	);
 
 	const renderSkeletons = (
 		skeletons: (ISkeleton & { key: string })[],
@@ -88,24 +95,23 @@ export const Skeleton = memo(({ grid: gridState, styles }: IProps) => {
 					position="relative"
 					overflow="hidden"
 				>
-					{!skeleton.isRepeated ? (
-						<Box
-							display={skeleton.isRepeated ? 'none' : 'block'}
-							left={0}
-							position="absolute"
-							h="full"
-							top={0}
-							style={{
-								width: `${skeleton.skeletonW || DEFAULT_SKELETON_GRADIENT_WIDTH}px`,
-								backgroundImage: `linear-gradient(
-                90deg,
-                ${currentModeTheme.main} 0px,
-                ${currentModeTheme.gradient} ${(Number(skeleton.skeletonW) || DEFAULT_SKELETON_GRADIENT_WIDTH) / 2}px,
-                ${currentModeTheme.main} ${skeleton.skeletonW || DEFAULT_SKELETON_GRADIENT_WIDTH}px
-              )`,
-							}}
-						/>
-					) : null}
+					<Box
+						display="block"
+						left={0}
+						position="absolute"
+						h="full"
+						animation={`${skeletonAnimationVariant} infinite 1s linear ${skeletonAnimationVariant === 'fade' ? 'alternate' : ''}`}
+						top={0}
+						style={{
+							width: `${skeleton.skeletonW || DEFAULT_SKELETON_GRADIENT_WIDTH}px`,
+							backgroundImage: `linear-gradient(
+							90deg,
+							${currentModeTheme.main} 0px,
+							${currentModeTheme.gradient} ${(Number(skeleton.skeletonW) || DEFAULT_SKELETON_GRADIENT_WIDTH) / 2}px,
+							${currentModeTheme.main} ${skeleton.skeletonW || DEFAULT_SKELETON_GRADIENT_WIDTH}px
+						)`,
+						}}
+					/>
 				</Box>
 			)
 		);
@@ -175,9 +181,7 @@ export const Skeleton = memo(({ grid: gridState, styles }: IProps) => {
 					.map(mutateWithRepeated.bind(null, repeatCount, keyLevel))
 					.forEach(({ key, item }: { key: string; item: IGrid }) => {
 						collectedChildren.push({
-							// ...getAdaptiveData(gridState[path] as IGrid, device),
-							// ...gridState[path] as IGrid, // todo
-							...putInitialValuesIfNotExists(item),
+							...getAdaptiveData(item as IGrid, device),
 							key,
 						});
 					});
@@ -187,8 +191,7 @@ export const Skeleton = memo(({ grid: gridState, styles }: IProps) => {
 					.map(mutateWithRepeated.bind(null, repeatCount, keyLevel))
 					.forEach(({ key, item }: { key: string; item: ISkeleton }) => {
 						collectedSkeletons.push({
-							// ...getAdaptiveData(skeletonsState[path] as ISkeleton, device), // todo
-							...putInitialValuesIfNotExists(item, true),
+							...getAdaptiveData(item as ISkeleton, device, true),
 							key,
 						});
 					});
@@ -204,7 +207,7 @@ export const Skeleton = memo(({ grid: gridState, styles }: IProps) => {
 				}),
 				withOpacity = grid.withOpacity,
 				style = convertStyles(grid.styles as string) || {};
-			console.log(collectedChildren, collectedSkeletons, grid);
+
 			return (
 				<Box
 					key={keyLevel}
@@ -260,17 +263,16 @@ export const Skeleton = memo(({ grid: gridState, styles }: IProps) => {
 				</Box>
 			);
 		},
-		[
-			gridState,
-			currentModeTheme,
-			// isDark, colorTheme, device
-		]
+		[gridState, currentModeTheme, skeletonAnimationVariant, device]
 	);
 
 	return (
 		<Box style={styles ?? {}}>
 			{renderGridLayout({
-				grid: putInitialValuesIfNotExists(gridState) as IGrid,
+				grid: getAdaptiveData(
+					putInitialValuesIfNotExists(gridState) as IGrid,
+					device
+				),
 				dataKey: ROOT_KEY,
 				index: 0,
 				length: 1,

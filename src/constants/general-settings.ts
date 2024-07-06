@@ -1,4 +1,8 @@
-import { DIRECTION, SIZE_UNITS } from '@/common/enums';
+import {
+	DIRECTION,
+	SIZE_UNITS,
+	SKELETON_ANIMATION_VARIANTS,
+} from '@/common/enums';
 import { GridKeyType } from '@/common/types';
 import { filterFromPx } from '@/utils/helpers';
 import { breakpoints } from '@/styles/theme/index';
@@ -91,4 +95,15 @@ export const SIZE_UNITS_INITIAL_VALUES = {
 	[SIZE_UNITS.EM]: '1',
 	[SIZE_UNITS.V_MIN]: '100',
 	[SIZE_UNITS.V_MAX]: '100',
+};
+
+export const SKELETON_ANIMATIONS = {
+	[SKELETON_ANIMATION_VARIANTS.SLIDE]: {
+		from: { left: '-100%' },
+		to: { left: '100%' },
+	},
+	[SKELETON_ANIMATION_VARIANTS.FADE]: {
+		from: { opacity: '0' },
+		to: { opacity: '1' },
+	},
 };

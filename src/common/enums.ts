@@ -77,3 +77,8 @@ export enum COLOR_MODE {
 	DARK = 'dark',
 	LIGHT = 'light',
 }
+
+export enum SKELETON_ANIMATION_VARIANTS {
+	SLIDE = 'slide',
+	FADE = 'fade',
+}

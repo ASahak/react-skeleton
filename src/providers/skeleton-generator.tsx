@@ -4,21 +4,29 @@ import {
 	DEFAULT_BREAKPOINTS,
 	DEFAULT_COLOR_THEMES,
 } from '@/constants/general-settings';
+import { SKELETON_ANIMATION_VARIANTS } from '@/common/enums';
 
 export const ReactSkeletonProvider = ({
 	children,
-	isDark = false,
-	colorTheme = DEFAULT_COLOR_THEMES,
-	breakpoints = DEFAULT_BREAKPOINTS,
+	value: {
+		isDark = false,
+		colorTheme = DEFAULT_COLOR_THEMES,
+		breakpoints = DEFAULT_BREAKPOINTS,
+		skeletonAnimation = SKELETON_ANIMATION_VARIANTS.SLIDE as SKELETON_ANIMATION_VARIANTS,
+	},
 }: Readonly<{
-	isDark?: boolean;
+	value: {
+		skeletonAnimation?: SKELETON_ANIMATION_VARIANTS;
+		isDark?: boolean;
+		breakpoints?: Breakpoints;
+		colorTheme?: ColorThemes;
+	};
 	children: React.ReactNode;
-	breakpoints?: Breakpoints;
-	colorTheme?: ColorThemes;
 }>) => {
 	return (
 		<SkeletonGeneratorContext.Provider
 			value={{
+				skeletonAnimation,
 				isDark,
 				colorTheme,
 				breakpoints,
