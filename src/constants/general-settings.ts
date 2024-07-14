@@ -26,12 +26,6 @@ export const DEFAULT_SKELETON_GRADIENT_WIDTH = 100;
 
 export const ROOT_KEY = 'grid_1';
 
-export const TREE_ELEMENTS_SPACING = {
-	MAX: 20,
-	MIN: 0,
-	DEFAULT: 10,
-};
-
 export const DEFAULT_COLOR_THEMES = {
 	dark: {
 		main: '#282c34',
@@ -47,12 +41,6 @@ export const DEFAULT_BREAKPOINTS = {
 	mobile: `${filterFromPx(breakpoints.sm) - 1}px`,
 	tablet: `${filterFromPx(breakpoints.lg) - 1}px`,
 	desktop: breakpoints.lg,
-};
-
-export const REPEAT_COUNT_RANGE = {
-	MAX: 1000,
-	MIN: 0,
-	DEFAULT: DEFAULT_REPEAT_COUNT,
 };
 
 export const CONTAINER_INITIAL_VALUES: Partial<Record<GridKeyType, any>> = {

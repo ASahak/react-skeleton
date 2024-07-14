@@ -99,7 +99,7 @@ export const Skeleton = memo(({ grid: gridState, styles }: IProps) => {
 						display="block"
 						left={0}
 						position="absolute"
-						h="full"
+						h="100%"
 						animation={`${skeletonAnimationVariant} infinite 1s linear ${skeletonAnimationVariant === 'fade' ? 'alternate' : ''}`}
 						top={0}
 						style={{
