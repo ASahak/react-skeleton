@@ -17,7 +17,6 @@ export type Breakpoints = {
 export type SkeletonKeyType = 'w' | 'h' | 'margin' | 'r' | 'skeletonW' | 'responsive';
 export type GridKeyType = 'gridGap' | 'repeatCount' | 'direction' | 'className' | 'margin' | 'w' | 'h' | 'alignItems' | 'justifyContent' | 'withOpacity' | 'children' | 'skeletons' | 'styles' | 'responsive';
 export type Responsive = Partial<Record<Device, any>>;
-export type ResponsiveInstance = Record<'responsive', Responsive>;
 export type SizeFunction = () => number | string;
 export interface ISkeleton extends Pick<IGrid, 'w' | 'h' | 'margin' | 'isRepeated' | 'responsive'> {
     r?: string | number;
