@@ -68,3 +68,21 @@ export declare const SIZE_UNITS_INITIAL_VALUES: {
     vmin: string;
     vmax: string;
 };
+export declare const SKELETON_ANIMATIONS: {
+    slide: {
+        from: {
+            left: string;
+        };
+        to: {
+            left: string;
+        };
+    };
+    fade: {
+        from: {
+            opacity: string;
+        };
+        to: {
+            opacity: string;
+        };
+    };
+};

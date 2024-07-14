@@ -5,7 +5,7 @@ import {
 } from '@/common/enums';
 import { GridKeyType } from '@/common/types';
 import { filterFromPx } from '@/utils/helpers';
-import { breakpoints } from '@/styles/theme/index';
+import { breakpoints } from '@/styles/theme';
 
 export const STYLE_PARSING_REGEXP = /(^\{|\}$)/g;
 

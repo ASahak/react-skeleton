@@ -2,7 +2,7 @@ import { ALIGN_ITEMS, MARGIN_SIDES } from '../common/enums';
 import { Device, GridKeyType, IGenerateCSSGridAreaArgs, IGrid, ISkeleton, Responsive, SkeletonKeyType } from '../common/types';
 
 export declare const responsiveInstance: (instance: Partial<Record<GridKeyType, any>> | Partial<Record<SkeletonKeyType, any>>) => Responsive;
-export declare const getAdaptiveData: (grid: Partial<Record<GridKeyType, any>>, device: Device | null) => any;
+export declare const getAdaptiveData: (grid: Partial<Record<GridKeyType, any>>, device: Device | null, isSkeleton?: boolean) => ISkeleton | IGrid;
 export declare const generateDefaultValues: () => any;
 export declare const convertToArray: (str: string) => string[];
 export declare const overrideSides: (side: MARGIN_SIDES, value: string, newValue: string) => string[];

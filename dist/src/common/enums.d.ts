@@ -72,3 +72,7 @@ export declare enum COLOR_MODE {
     DARK = "dark",
     LIGHT = "light"
 }
+export declare enum SKELETON_ANIMATION_VARIANTS {
+    SLIDE = "slide",
+    FADE = "fade"
+}
