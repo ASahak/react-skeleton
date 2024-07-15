@@ -68,7 +68,7 @@ export default ExampleComponent;
 ````
 
 ### The result is this:
-<img src="public/example-of-skeleton.png" />
+<img src="https://skeleton-generator.vercel.app/example-of-skeleton.png" />
 
 # API
 ### Props of ReactSkeletonProvider
@@ -107,7 +107,7 @@ If you encounter any issues, please visit this [link](https://github.com/ASahak/
 
 If my builder was helpful for you, you can show your support by
 
-[<img src="public/buy-me-a-coffee.png" />](https://buymeacoffee.com/asahak)
+[<img src="https://skeleton-generator.vercel.app/buy-me-a-coffee.png" />](https://buymeacoffee.com/asahak)
 
 
 ### You can reach out to me via:
