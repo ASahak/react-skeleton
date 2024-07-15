@@ -1,6 +1,6 @@
 {
 	"name": "react-skeleton-builder",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"private": false,
 	"type": "module",
 	"main": "dist/index.umd.js",
@@ -34,6 +34,7 @@
 	"files": [
 		"/dist"
 	],
+	"homepage": "https://skeleton-generator.vercel.app/",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/ASahak/react-skeleton"
