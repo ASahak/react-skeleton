@@ -1,6 +1,6 @@
 {
 	"name": "react-skeleton-builder",
-	"version": "0.3.3",
+	"version": "0.3.4",
 	"private": false,
 	"type": "module",
 	"main": "dist/index.umd.js",
@@ -32,7 +32,8 @@
 		}
 	},
 	"files": [
-		"/dist"
+		"/dist",
+		"/public"
 	],
 	"homepage": "https://skeleton-generator.vercel.app/",
 	"repository": {
@@ -80,6 +81,14 @@
 		"prettier-plugin-tailwindcss": "^0.5.12",
 		"typescript": "^5"
 	},
+	"keywords": [
+		"react",
+		"skeleton",
+		"skeleton-builder",
+		"custom-skeleton",
+		"skeleton-ui",
+		"ui"
+	],
 	"peerDependencies": {
 		"react": "^18.2.0"
 	}

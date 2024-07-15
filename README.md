@@ -68,7 +68,7 @@ export default ExampleComponent;
 ````
 
 ### The result is this:
-![ezcv logo](public/example-of-skeleton.png)
+![skeleton](/public/example-of-skeleton.png)
 
 # API
 ### Props of ReactSkeletonProvider
@@ -76,6 +76,7 @@ export default ExampleComponent;
 |----------|----------------------------------|----------|--------------|
 | children | ReactNode                        | true     |              |
 | value    | Object (check appropriate table) | true     | {}           |
+<br />
 
 ### value prop consist of these:
 | Props             | type                             | required | defaultValue                      |
@@ -84,12 +85,14 @@ export default ExampleComponent;
 | colorTheme        | Object (check appropriate table) | false    | DEFAULT_COLOR_THEMES              |
 | breakpoints       | Object (check appropriate table) | false    | DEFAULT_BREAKPOINTS               |
 | skeletonAnimation | string                           | false    | SKELETON_ANIMATION_VARIANTS.SLIDE |
+<br />
 
 ### colorTheme prop consist of these:
 | Props | type                                    | required | defaultValue                             |
 |-------|-----------------------------------------|----------|------------------------------------------|
 | dark  | Object {main: string, gradient: string} | true     | { main: '#282c34', gradient: '#2c303a' } |
 | light | Object {main: string, gradient: string} | true     | { main: '#f1f1f1', gradient: '#ececec' } |
+<br />
 
 ### breakpoints prop consist of these:
 | Props   | type   | required | defaultValue |
@@ -98,12 +101,13 @@ export default ExampleComponent;
 | tablet  | string | true     | 961px        |
 | desktop | string | true     | 962px >      |
 
+<br />
 
 If you encounter any issues, please visit this [link](https://github.com/ASahak/skeleton-generator/issues).
 
 If my builder was helpful for you, you can show your support by
 
-[![ezcv logo](public/buy-me-a-coffee.png)](https://buymeacoffee.com/asahak)
+[![buy_coffee](/public/buy-me-a-coffee.png)](https://buymeacoffee.com/asahak)
 
 ### You can reach out to me via:
 - **[Telegram](https://t.me/A_Sahak)**
