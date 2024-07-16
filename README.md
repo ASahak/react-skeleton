@@ -76,16 +76,15 @@ export default ExampleComponent;
 |----------------------|----------------------------------|----------|--------------|
 | children             | ReactNode                        | true     |              |
 | value                | Object (check appropriate table) | true     | {}           |
-| customContainerWidth | number                           | false    |              |
 <br />
 
 ### value prop consist of these:
-| Props             | type                             | required | defaultValue                      |
-|-------------------|----------------------------------|----------|-----------------------------------|
-| isDark            | boolean                          | false    | false                             |
-| colorTheme        | Object (check appropriate table) | false    | DEFAULT_COLOR_THEMES              |
-| breakpoints       | Object (check appropriate table) | false    | DEFAULT_BREAKPOINTS               |
-| skeletonAnimation | string                           | false    | SKELETON_ANIMATION_VARIANTS.SLIDE |
+| Props             | type                                           | required | defaultValue                      |
+|-------------------|------------------------------------------------|----------|-----------------------------------|
+| isDark            | boolean                                        | false    | false                             |
+| colorTheme        | Object (ColorThemes) (check appropriate table) | false    | DEFAULT_COLOR_THEMES              |
+| breakpoints       | Object (Breakpoints) (check appropriate table) | false    | DEFAULT_BREAKPOINTS               |
+| skeletonAnimation | string                                         | false    | SKELETON_ANIMATION_VARIANTS.SLIDE |
 <br />
 
 ### colorTheme prop consist of these:
@@ -102,6 +101,14 @@ export default ExampleComponent;
 | tablet  | string | true     | 961px        |
 | desktop | string | true     | 962px >      |
 
+<br />
+
+### Props of Skeleton
+| Props                | type                                                                     | required | defaultValue |
+|----------------------|--------------------------------------------------------------------------|----------|--------------|
+| styles               | Object                                                                   | false    | {}           |
+| customContainerWidth | number (breakpoints will work with that width instead of window's width) | false    |              |
+| grid                 | IGrid (object)                                                           | true     |              |
 <br />
 
 If you encounter any issues, please visit this [link](https://github.com/ASahak/skeleton-generator/issues).
