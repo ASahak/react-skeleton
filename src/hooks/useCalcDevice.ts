@@ -2,14 +2,18 @@ import { useWindowSize } from 'react-use';
 import { Breakpoints, Device } from '@/common/types';
 import { filterFromPx } from '@/utils/helpers';
 
-export const useCalcDevice = (breakpoints: Breakpoints): Device => {
+export const useCalcDevice = (
+	breakpoints: Breakpoints,
+	customContainerWidth?: number
+): Device => {
 	const { width: containerWidth } = useWindowSize();
+	const queryWidth = customContainerWidth ?? containerWidth;
 
-	if (containerWidth <= filterFromPx(breakpoints.mobile)) return 'mobile';
+	if (queryWidth <= filterFromPx(breakpoints.mobile)) return 'mobile';
 
 	if (
-		containerWidth > filterFromPx(breakpoints.mobile) &&
-		containerWidth <= filterFromPx(breakpoints.tablet)
+		queryWidth > filterFromPx(breakpoints.mobile) &&
+		queryWidth <= filterFromPx(breakpoints.tablet)
 	)
 		return 'tablet';
 

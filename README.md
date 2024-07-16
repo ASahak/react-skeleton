@@ -72,10 +72,11 @@ export default ExampleComponent;
 
 # API
 ### Props of ReactSkeletonProvider
-| Props    | type                             | required | defaultValue |
-|----------|----------------------------------|----------|--------------|
-| children | ReactNode                        | true     |              |
-| value    | Object (check appropriate table) | true     | {}           |
+| Props                | type                             | required | defaultValue |
+|----------------------|----------------------------------|----------|--------------|
+| children             | ReactNode                        | true     |              |
+| value                | Object (check appropriate table) | true     | {}           |
+| customContainerWidth | number                           | false    |              |
 <br />
 
 ### value prop consist of these:
