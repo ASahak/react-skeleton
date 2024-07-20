@@ -1,7 +1,9 @@
 {
 	"name": "react-skeleton-builder",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"private": false,
+	"author": "ASahak",
+	"description": "A versatile React component library for creating customizable skeleton loading animations with Chakra UI and TypeScript.",
 	"type": "module",
 	"main": "dist/index.umd.js",
 	"module": "dist/index.es.js",
@@ -80,9 +82,14 @@
 		"prettier-plugin-tailwindcss": "^0.5.12",
 		"typescript": "^5"
 	},
+	"license": "MIT",
 	"keywords": [
 		"react",
 		"skeleton",
+		"loading",
+		"builder",
+		"loader",
+		"animation",
 		"skeleton-builder",
 		"custom-skeleton",
 		"skeleton-ui",
