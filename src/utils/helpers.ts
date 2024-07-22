@@ -43,7 +43,7 @@ export const convertToArray = (str: string) =>
 const isNumber = (n: string | number): boolean =>
 	!isNaN(parseFloat(String(n))) && isFinite(Number(n));
 
-export const generateMargin = (marginProp: IGrid['margin']) => {
+export const generateMargin = (marginProp: IGrid['margin'], unit: string) => {
 	const marginDetect = () => {
 		let [t, r, b, l] = convertToArray(marginProp as string);
 		if (t && !r && !b && !l) {
@@ -65,7 +65,7 @@ export const generateMargin = (marginProp: IGrid['margin']) => {
 			}
 		}
 		return [t, r, b, l].reduce((acc, item: string) => {
-			acc += isNumber(item) ? item + 'px ' : item + ' ';
+			acc += isNumber(item) ? item + `${unit} ` : item + ' ';
 			return acc;
 		}, '');
 	};

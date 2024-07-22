@@ -67,7 +67,7 @@ export const SKELETON_INITIAL_VALUES = {
 
 export const SIZE_UNITS_INITIAL_VALUES = {
 	[SIZE_UNITS.FN]: '',
-	[SIZE_UNITS.AUTO]: '',
+	[SIZE_UNITS.AUTO]: 'auto',
 	[SIZE_UNITS.PERCENT]: '100',
 	[SIZE_UNITS.PX]: '100',
 	[SIZE_UNITS.FR]: '1',

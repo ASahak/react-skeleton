@@ -85,7 +85,7 @@ export const Skeleton = memo(
 												: (skeleton.h as SizeFunction)())!.toString()
 										),
 							borderRadius: skeleton.r || '0px',
-							margin: generateMargin(skeleton.margin || ''),
+							margin: generateMargin(skeleton.margin || '', 'rem'),
 							backgroundColor: currentModeTheme.main,
 							opacity: setOpacity(
 								index,
@@ -217,7 +217,7 @@ export const Skeleton = memo(
 						data-key={keyLevel}
 						style={{
 							gap: gridGap,
-							margin: generateMargin(grid.margin || ''),
+							margin: generateMargin(grid.margin || '', 'rem'),
 							grid: gridStyle,
 							height: reservedPropsFromParent?.parent
 								? DEFAULT_HEIGHT
