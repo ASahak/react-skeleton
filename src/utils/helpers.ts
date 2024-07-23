@@ -18,6 +18,27 @@ import {
 	KeysInObject,
 } from '@/common/types';
 
+export const inheritFromParent = (
+	grid: Partial<Record<GridKeyType, any>>,
+	parent: Partial<Record<GridKeyType, any>>
+) => {
+	return {
+		...grid,
+		...Object.keys(parent).reduce(
+			(acc, item) => {
+				if (
+					!['children', 'skeletons', 'responsive'].includes(item) &&
+					!Object.hasOwn(grid, item)
+				) {
+					acc[item as GridKeyType] = parent[item as GridKeyType];
+				}
+				return acc;
+			},
+			{} as Record<Partial<GridKeyType>, any>
+		),
+	};
+};
+
 export const getAdaptiveData = (
 	grid: Partial<Record<GridKeyType, any>>,
 	device: Device | null,
@@ -26,7 +47,7 @@ export const getAdaptiveData = (
 	return device !== 'desktop' && device && Object.hasOwn(grid, 'responsive')
 		? {
 				...putInitialValuesIfNotExists(
-					grid.responsive[device] ?? {},
+					inheritFromParent(grid.responsive[device] ?? {}, grid),
 					isSkeleton
 				),
 				...(Object.hasOwn(grid, 'children') && { children: grid.children }),
@@ -137,6 +158,8 @@ export const putInitialValuesIfNotExists = (
 	item: ISkeleton | IGrid,
 	isSkeleton?: boolean
 ) => {
+	console.log(item);
+
 	function mutate<T extends object, U>(initialValues: T) {
 		return Object.keys(initialValues).reduce(
 			(acc, key) => {

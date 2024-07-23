@@ -43,7 +43,7 @@ export const Skeleton = memo(
 		const { colorTheme, isDark, skeletonAnimation, breakpoints } =
 			useGetSkeletonConfigProvider();
 		const device = useCalcDevice(breakpoints, customContainerWidth);
-
+		console.log(gridState);
 		const currentModeTheme: ColorTheme = isDark
 			? colorTheme[COLOR_MODES.DARK]
 			: colorTheme[COLOR_MODES.LIGHT];
