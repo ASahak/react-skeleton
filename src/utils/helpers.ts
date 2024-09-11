@@ -158,8 +158,6 @@ export const putInitialValuesIfNotExists = (
 	item: ISkeleton | IGrid,
 	isSkeleton?: boolean
 ) => {
-	console.log(item);
-
 	function mutate<T extends object, U>(initialValues: T) {
 		return Object.keys(initialValues).reduce(
 			(acc, key) => {
