@@ -1,6 +1,6 @@
 {
 	"name": "react-skeleton-builder",
-	"version": "0.5.4",
+	"version": "0.6.1",
 	"private": false,
 	"author": "ASahak",
 	"description": "A versatile React component library for creating customizable skeleton loading animations with Chakra UI and TypeScript.",
@@ -96,6 +96,9 @@
 		"ui"
 	],
 	"peerDependencies": {
-		"react": "^18.2.0"
+		"react": ">=16.0.0"
+	},
+	"engines": {
+		"node": ">=10"
 	}
 }
