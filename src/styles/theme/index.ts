@@ -1,5 +1,5 @@
-import { extendTheme } from '@chakra-ui/react';
-import styles from '@/styles/globalStyles';
+import { extendTheme as extendChakraTheme } from '@chakra-ui/react';
+import styles from '../globalStyles';
 import foundations from './foundations';
 
 export const breakpoints = {
@@ -17,4 +17,4 @@ const overrides = {
 	breakpoints,
 };
 
-export default extendTheme(overrides);
+export default extendChakraTheme(overrides);

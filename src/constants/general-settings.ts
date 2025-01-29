@@ -2,10 +2,10 @@ import {
 	DIRECTION,
 	SIZE_UNITS,
 	SKELETON_ANIMATION_VARIANTS,
-} from '@/common/enums';
-import { GridKeyType } from '@/common/types';
-import { filterFromPx } from '@/utils/helpers';
-import { breakpoints } from '@/styles/theme';
+} from '../common/enums';
+import { GridKeyType } from '../common/types';
+import { filterFromPx } from '../utils/helpers';
+import { breakpoints } from '../styles/theme';
 
 export const STYLE_PARSING_REGEXP = /(^\{|\}$)/g;
 

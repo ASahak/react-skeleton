@@ -1,5 +1,5 @@
 import parse from 'style-to-object';
-import { ALIGN_ITEMS, DIRECTION } from '@/common/enums';
+import { ALIGN_ITEMS, DIRECTION } from '../common/enums';
 import {
 	CONTAINER_INITIAL_VALUES,
 	DEFAULT_GRID_CONTAINER_HEIGHT,
@@ -8,7 +8,7 @@ import {
 	DEFAULT_WIDTH,
 	SKELETON_INITIAL_VALUES,
 	STYLE_PARSING_REGEXP,
-} from '@/constants/general-settings';
+} from '../constants/general-settings';
 import {
 	Device,
 	GridKeyType,
@@ -16,7 +16,7 @@ import {
 	IGrid,
 	ISkeleton,
 	KeysInObject,
-} from '@/common/types';
+} from '../common/types';
 
 export const inheritFromParent = (
 	grid: Partial<Record<GridKeyType, any>>,
@@ -28,7 +28,7 @@ export const inheritFromParent = (
 			(acc, item) => {
 				if (
 					!['children', 'skeletons', 'responsive'].includes(item) &&
-					!Object.hasOwn(grid, item)
+					!Object.prototype.hasOwnProperty.call(grid, item)
 				) {
 					acc[item as GridKeyType] = parent[item as GridKeyType];
 				}
@@ -44,14 +44,18 @@ export const getAdaptiveData = (
 	device: Device | null,
 	isSkeleton?: boolean
 ) => {
-	return device !== 'desktop' && device && Object.hasOwn(grid, 'responsive')
+	return device !== 'desktop' &&
+		device &&
+		Object.prototype.hasOwnProperty.call(grid, 'responsive')
 		? {
 				...putInitialValuesIfNotExists(
 					inheritFromParent(grid.responsive[device] ?? {}, grid),
 					isSkeleton
 				),
-				...(Object.hasOwn(grid, 'children') && { children: grid.children }),
-				...(Object.hasOwn(grid, 'skeletons') && {
+				...(Object.prototype.hasOwnProperty.call(grid, 'children') && {
+					children: grid.children,
+				}),
+				...(Object.prototype.hasOwnProperty.call(grid, 'skeletons') && {
 					skeletons: grid.skeletons,
 				}),
 			}
@@ -161,10 +165,10 @@ export const putInitialValuesIfNotExists = (
 	function mutate<T extends object, U>(initialValues: T) {
 		return Object.keys(initialValues).reduce(
 			(acc, key) => {
-				const typedKey = key as KeysInObject<T>;
+				const typedKey: any = key as KeysInObject<T>;
 
 				if (!(typedKey in item)) {
-					(acc as any)[typedKey] = initialValues[typedKey];
+					(acc as any)[typedKey] = (initialValues as any)[typedKey];
 				}
 				return acc;
 			},
@@ -263,7 +267,7 @@ export const cssToReactStyle = (styles: Record<string, any>) => {
 	const styleObject: Record<string, any> = {};
 
 	Object.keys(styles).forEach((styleProp) => {
-		const camelCaseProperty = styleProp.replace(/-([a-z])/g, (match, letter) =>
+		const camelCaseProperty = styleProp.replace(/-([a-z])/g, (_, letter) =>
 			letter.toUpperCase()
 		);
 		styleObject[camelCaseProperty] = styles[styleProp];

@@ -1,10 +1,11 @@
-import { SkeletonGeneratorContext } from '@/contexts/skeleton-generator';
-import { Breakpoints, ColorThemes } from '@/common/types';
+import React from 'react';
+import { SkeletonGeneratorContext } from '../contexts/skeleton-generator';
+import { Breakpoints, ColorThemes } from '../common/types';
 import {
 	DEFAULT_BREAKPOINTS,
 	DEFAULT_COLOR_THEMES,
-} from '@/constants/general-settings';
-import { SKELETON_ANIMATION_VARIANTS } from '@/common/enums';
+} from '../constants/general-settings';
+import { SKELETON_ANIMATION_VARIANTS } from '../common/enums';
 
 export const ReactSkeletonProvider = ({
 	children,

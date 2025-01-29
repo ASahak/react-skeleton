@@ -1,6 +1,6 @@
 import { useWindowSize } from 'react-use';
-import { Breakpoints, Device } from '@/common/types';
-import { filterFromPx } from '@/utils/helpers';
+import { Breakpoints, Device } from '../common/types';
+import { filterFromPx } from '../utils/helpers';
 
 export const useCalcDevice = (
 	breakpoints: Breakpoints,

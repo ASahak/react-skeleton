@@ -1,10 +1,10 @@
 import { createContext, Context } from 'react';
-import { Breakpoints, ColorThemes } from '@/common/types';
+import { Breakpoints, ColorThemes } from '../common/types';
 import {
 	DEFAULT_BREAKPOINTS,
 	DEFAULT_COLOR_THEMES,
-} from '@/constants/general-settings';
-import { SKELETON_ANIMATION_VARIANTS } from '@/common/enums';
+} from '../constants/general-settings';
+import { SKELETON_ANIMATION_VARIANTS } from '../common/enums';
 
 export interface ISkeletonGeneratorContext {
 	isDark?: boolean;

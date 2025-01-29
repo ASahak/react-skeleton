@@ -1,7 +1,8 @@
+import React from 'react';
 import { Chakra } from './chakra';
-import { ReactSkeletonProvider } from '@/providers/skeleton-generator';
-import { Skeleton } from '@/components';
-import { SKELETON_ANIMATION_VARIANTS } from '@/common/enums';
+import { ReactSkeletonProvider } from './skeleton-generator';
+import { Skeleton } from '../components';
+import { SKELETON_ANIMATION_VARIANTS } from '../common/enums';
 
 export const AppProviders = () => {
 	return (

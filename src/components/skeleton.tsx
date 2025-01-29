@@ -1,19 +1,22 @@
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
 import { memo, useCallback, useMemo } from 'react';
-import { Box, keyframes } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
+import { keyframes } from '@emotion/react';
 import {
 	ColorTheme,
 	IGrid,
 	IGridLayout,
 	ISkeleton,
 	SizeFunction,
-} from '@/common/types';
+} from '../common/types';
 import {
 	DEFAULT_HEIGHT,
 	DEFAULT_SKELETON_GRADIENT_WIDTH,
 	DEFAULT_WIDTH,
 	ROOT_KEY,
 	SKELETON_ANIMATIONS,
-} from '@/constants/general-settings';
+} from '../constants/general-settings';
 import {
 	applicableValue,
 	cssToReactStyle,
@@ -25,13 +28,13 @@ import {
 	parseStyleObject,
 	putInitialValuesIfNotExists,
 	setOpacity,
-} from '@/utils/helpers';
+} from '../utils/helpers';
 import {
 	COLOR_MODES,
 	DIRECTION,
 	SKELETON_ANIMATION_VARIANTS,
-} from '@/common/enums';
-import { useCalcDevice, useGetSkeletonConfigProvider } from '@/hooks';
+} from '../common/enums';
+import { useCalcDevice, useGetSkeletonConfigProvider } from '../hooks';
 
 export type IProps = {
 	grid: IGrid;
@@ -165,11 +168,11 @@ export const Skeleton = memo(
 				const collectedSkeletons: (ISkeleton & { key: string })[] = [];
 				const gridGap = (grid.gridGap || 0) + 'rem',
 					hasChildren =
-						Object.hasOwn(grid, 'children') &&
+						Object.prototype.hasOwnProperty.call(grid, 'children') &&
 						Array.isArray(grid.children) &&
 						grid.children.length > 0,
 					hasSkeletons =
-						Object.hasOwn(grid, 'skeletons') &&
+						Object.prototype.hasOwnProperty.call(grid, 'skeletons') &&
 						Array.isArray(grid.skeletons) &&
 						grid.skeletons.length > 0,
 					repeatCount: number = grid.repeatCount as number;

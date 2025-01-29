@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { SkeletonGeneratorContext } from '@/contexts/skeleton-generator';
+import { SkeletonGeneratorContext } from '../contexts/skeleton-generator';
 
 export const useGetSkeletonConfigProvider = () => {
 	const context = useContext(SkeletonGeneratorContext);

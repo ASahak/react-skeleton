@@ -1,9 +1,4 @@
-import {
-	ALIGN_ITEMS,
-	COLOR_MODES,
-	DIRECTION,
-	JUSTIFY_CONTENT,
-} from '@/common/enums';
+import { ALIGN_ITEMS, COLOR_MODES, DIRECTION, JUSTIFY_CONTENT } from './enums';
 
 export type KeysInObject<T extends object> = keyof T;
 
