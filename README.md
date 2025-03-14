@@ -29,7 +29,7 @@ You can generate the grid structure by visiting the
 
 ````
 import React from 'react';
-import { Skeleton } from 'react-skeleton-builder';
+import Skeleton from 'react-skeleton-builder';
 
 const ExampleComponent: React.FC = () => {
 return (
